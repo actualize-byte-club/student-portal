@@ -9,7 +9,8 @@ export default {
         last_name: "Doe",
         email: "jane@gmail.com",
         phone_number: "312-123-3456",
-        short_bio: "This is a short bio. Everyone knows my name. Fears my name.",
+        short_bio:
+          "This is a short bio. Everyone knows my name. Fears my name.",
         linkedin_url: "https://www.linkedin.com/in/jackwhisler/",
         twitter_handle: "@janedoe",
         website_url: "www.google.com",
@@ -42,11 +43,16 @@ export default {
             details: "If you know, you know.",
           },
         ],
-        skills: [{ name: "rails" }, { name: "ruby" }, { name: "project management" }],
+        skills: [
+          { name: "rails" },
+          { name: "ruby" },
+          { name: "project management" },
+        ],
         capstones: [
           {
             name: "World Domination",
-            description: "Solves world hunger, sells for a hefty profit and land rights.",
+            description:
+              "Solves world hunger, sells for a hefty profit and land rights.",
             url: "www.worlddomination.org",
             screenshot:
               "https://cdn.akamai.steamstatic.com/steam/apps/1128810/ss_53fa01d3fa5de609e9e77254b72e6cf82b51d641.1920x1080.jpg?t=1634868894",
@@ -67,6 +73,12 @@ export default {
     <h1>Student Education</h1>
     <h1>Student Skills</h1>
     <h1>Student Capstones</h1>
+    <div v-for="capstone in student.capstones" v-bind:key="capstone.id">
+      <h2>{{ capstone.name }}</h2>
+      <img v-bind:src="capstone.screenshot" alt="" />
+      <p>{{ capstone.description }}</p>
+      <p>{{ capstone.url }}</p>
+    </div>
   </div>
 </template>
 
