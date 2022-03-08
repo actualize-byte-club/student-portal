@@ -78,6 +78,12 @@ export default {
       <p>{{ experience.details }}</p>
     </div>
     <h1>Student Education</h1>
+    <div v-for="education in student.educations" v-bind:key="education.id">
+      <h2>{{ education.start_date }} - {{ education.end_date }}</h2>
+      <h2>{{ education.university_name }}</h2>
+      <h2>{{ education.degree }}</h2>
+      <h3>{{ education.details }}</h3>
+    </div>
     <h1>Student Skills</h1>
     <h1>Student Capstones</h1>
     <div v-for="capstone in student.capstones" v-bind:key="capstone.id">
