@@ -19,6 +19,7 @@ export default {
           "https://static.wikia.nocookie.net/simpsons/images/3/39/Hank_Scorpio.png/revision/latest?cb=20201209103604",
         experiences: [
           {
+            id: 1,
             start_date: "Jan 1, 2020",
             end_date: "Dec 31, 2021",
             job_title: "Global Director",
@@ -26,6 +27,7 @@ export default {
             details: "Trying to take over the world with code.",
           },
           {
+            id: 2,
             start_date: "Jan 1, 2021",
             end_date: "current",
             job_title: "Global CEO",
@@ -64,6 +66,11 @@ export default {
   <div class="home">
     <h1>Student Profile Data</h1>
     <h1>Student Experiences</h1>
+    <div v-for="experience in student.experiences" v-bind:key="experience.id">
+      <h2>{{ experience.job_title }}, {{ experience.company_name }}</h2>
+      <p>From: {{ experience.start_date }} To: {{ experience.end_date }}</p>
+      <p>{{ experience.details }}</p>
+    </div>
     <h1>Student Education</h1>
     <h1>Student Skills</h1>
     <h1>Student Capstones</h1>
