@@ -9,13 +9,15 @@ export default {
         last_name: "Doe",
         email: "jane@gmail.com",
         phone_number: "312-123-3456",
-        short_bio: "This is a short bio. Everyone knows my name. Fears my name.",
+        short_bio:
+          "This is a short bio. Everyone knows my name. Fears my name.",
         linkedin_url: "https://www.linkedin.com/in/jackwhisler/",
         twitter_handle: "janedoe",
         website_url: "www.google.com",
         online_resume: "www.linkedin.com/janedoe",
         github_url: "www.github.com/janedoe",
-        photo: "https://majornelson.com/wp-content/uploads/sites/7/2021/10/Evil-Genius-2.jpg",
+        photo:
+          "https://majornelson.com/wp-content/uploads/sites/7/2021/10/Evil-Genius-2.jpg",
         experiences: [
           {
             id: 1,
@@ -51,7 +53,8 @@ export default {
         capstones: [
           {
             name: "World Domination",
-            description: "Solves world hunger, sells for a hefty profit and land rights.",
+            description:
+              "Solves world hunger, sells for a hefty profit and land rights.",
             url: "www.worlddomination.org",
             screenshot:
               "https://cdn.akamai.steamstatic.com/steam/apps/1128810/ss_53fa01d3fa5de609e9e77254b72e6cf82b51d641.1920x1080.jpg?t=1634868894",
@@ -75,7 +78,9 @@ export default {
       <p>Short Bio: {{ student.short_bio }}</p>
       <a :href="student.linkedin_url">LinkedIn Profile</a>
       <br />
-      <a :href="`http://www.twitter.com/${student.twitter_handle}`">Twitter Profile</a>
+      <a :href="`http://www.twitter.com/${student.twitter_handle}`"
+        >Twitter Profile</a
+      >
       <br />
       <a :href="student.website_url">Website</a>
       <br />
@@ -103,6 +108,12 @@ export default {
       <p>{{ skill.name }}</p>
     </div>
     <h1>Student Capstones</h1>
+    <div v-for="capstone in student.capstones" v-bind:key="capstone.id">
+      <h2>{{ capstone.name }}</h2>
+      <img v-bind:src="capstone.screenshot" alt="" />
+      <p>{{ capstone.description }}</p>
+      <p>{{ capstone.url }}</p>
+    </div>
   </div>
 </template>
 
