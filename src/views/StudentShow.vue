@@ -11,12 +11,11 @@ export default {
         phone_number: "312-123-3456",
         short_bio: "This is a short bio. Everyone knows my name. Fears my name.",
         linkedin_url: "https://www.linkedin.com/in/jackwhisler/",
-        twitter_handle: "@janedoe",
+        twitter_handle: "janedoe",
         website_url: "www.google.com",
         online_resume: "www.linkedin.com/janedoe",
         github_url: "www.github.com/janedoe",
-        photo:
-          "https://static.wikia.nocookie.net/simpsons/images/3/39/Hank_Scorpio.png/revision/latest?cb=20201209103604",
+        photo: "https://majornelson.com/wp-content/uploads/sites/7/2021/10/Evil-Genius-2.jpg",
         experiences: [
           {
             start_date: "Jan 1, 2020",
@@ -42,7 +41,11 @@ export default {
             details: "If you know, you know.",
           },
         ],
-        skills: [{ name: "rails" }, { name: "ruby" }, { name: "project management" }],
+        skills: [
+          { id: 1, name: "rails" },
+          { id: 2, name: "ruby" },
+          { id: 3, name: "project management" },
+        ],
         capstones: [
           {
             name: "World Domination",
@@ -62,12 +65,39 @@ export default {
 
 <template>
   <div class="home">
-    <h1>Student Profile Data</h1>
+    <div>
+      <h1>Student Profile Data</h1>
+      <h2>Name: {{ student.first_name }} {{ student.last_name }}</h2>
+      <p>Email: {{ student.email }}</p>
+      <p>Phone Number: {{ student.phone_number }}</p>
+      <p>Short Bio: {{ student.short_bio }}</p>
+      <a :href="student.linkedin_url">LinkedIn Profile</a>
+      <br />
+      <a :href="`http://www.twitter.com/${student.twitter_handle}`">Twitter Profile</a>
+      <br />
+      <a :href="student.website_url">Website</a>
+      <br />
+      <a :href="student.online_resume">Online Resume</a>
+      <br />
+      <a :href="student.github_url">Github Profile</a>
+      <br />
+      <img v-bind:src="`${student.photo}`" alt="user photo" />
+    </div>
     <h1>Student Experiences</h1>
     <h1>Student Education</h1>
-    <h1>Student Skills</h1>
+    <div>
+      <h1>Student Skills</h1>
+      <div v-for="skill in student.skills" v-bind:key="skill.id">
+        <p>{{ skill.name }}</p>
+      </div>
+    </div>
     <h1>Student Capstones</h1>
   </div>
 </template>
 
-<style></style>
+<style>
+img {
+  max-width: 200px;
+  height: auto;
+}
+</style>
