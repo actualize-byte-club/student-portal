@@ -56,17 +56,42 @@ export default {
           },
         ],
       },
+      studentEditParams: {},
+      currentSkillEdit: 0,
+      errors: [],
+      newSkill: {},
     };
   },
   created: function () {},
-  methods: {},
+  methods: {
+    openEditSkill: function (skill) {
+      console.log(skill.id);
+      this.currentSkillEdit = skill.id;
+    },
+    deleteSkill: function (skill) {
+      console.log(skill.id);
+      console.log(this.student.skills);
+      // axios delete request here
+      var index = this.student.skills.indexOf(skill);
+      this.student.skills.splice(index, 1);
+    },
+    updateSkill: function (skill) {
+      console.log(skill);
+      this.currentSkillEdit = 0;
+      // axios patch/put request here
+    },
+    addSkill: function () {
+      console.log(this.newSkill);
+      // axios post request here
+    },
+  },
 };
 </script>
 
 <template>
   <div class="home">
     <div>
-      <h1>Student Profile Data</h1>
+      <h1>Edit Student Data</h1>
       <h2>Name: {{ student.first_name }} {{ student.last_name }}</h2>
       <p>Email: {{ student.email }}</p>
       <p>Phone Number: {{ student.phone_number }}</p>
@@ -98,8 +123,21 @@ export default {
     </div>
     <h1>Student Skills</h1>
     <div v-for="skill in student.skills" v-bind:key="skill.id">
-      <p>{{ skill.name }}</p>
+      <p>
+        {{ skill.name }}
+        <button v-on:click="openEditSkill(skill)">Edit</button>
+        <button v-on:click="deleteSkill(skill)">Delete</button>
+      </p>
+      <div v-if="currentSkillEdit == skill.id">
+        <p>
+          Skill name:
+          <input type="text" v-model="skill.name" />
+        </p>
+        <button v-on:click="updateSkill(skill)">Save Changes</button>
+      </div>
     </div>
+    <input type="text" v-model="newSkill.name" />
+    <button v-on:click="addSkill()">Add Skill</button>
     <h1>Student Capstones</h1>
     <div v-for="capstone in student.capstones" v-bind:key="capstone.id">
       <h2>{{ capstone.name }}</h2>
