@@ -5,6 +5,7 @@ import Logout from "../views/LogoutView.vue";
 import StudentShow from "../views/StudentShow.vue";
 import StudentEdit from "../views/StudentEdit.vue";
 import CapstoneEdit from "../views/CapstoneEdit.vue";
+import EducationsEdit from "../views/EducationsEdit.vue";
 import ExperiencesEdit from "../views/ExperiencesEdit.vue";
 
 const routes = [
@@ -24,7 +25,7 @@ const routes = [
     component: Logout,
   },
   {
-    path: "/me",
+    path: "/students/:id",
     name: "studentshow",
     component: StudentShow,
   },
@@ -37,6 +38,11 @@ const routes = [
     path: "/capstone/edit",
     name: "capstoneedit",
     component: CapstoneEdit,
+  },
+  {
+    path: "/me/educations/edit",
+    name: "EducationsEdit",
+    component: EducationsEdit,
   },
   {
     path: "/me/experiences/edit",
