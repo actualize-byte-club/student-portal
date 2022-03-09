@@ -56,7 +56,7 @@ export default {
           },
         ],
       },
-      studentEditParams: {},
+      currentStudentEdit: false,
       currentSkillEdit: 0,
       errors: [],
       newSkill: {},
@@ -84,67 +84,81 @@ export default {
       console.log(this.newSkill);
       // axios post request here
     },
+    updateStudent: function () {
+      console.log(this.student);
+      // axios patch/put request here
+    },
   },
 };
 </script>
 
 <template>
-  <div class="home">
+  <div class="studentedit">
     <div>
-      <h1>Edit Student Data</h1>
-      <h2>Name: {{ student.first_name }} {{ student.last_name }}</h2>
-      <p>Email: {{ student.email }}</p>
-      <p>Phone Number: {{ student.phone_number }}</p>
-      <p>Short Bio: {{ student.short_bio }}</p>
-      <a :href="student.linkedin_url">LinkedIn Profile</a>
-      <br />
-      <a :href="`http://www.twitter.com/${student.twitter_handle}`">Twitter Profile</a>
-      <br />
-      <a :href="student.website_url">Website</a>
-      <br />
-      <a :href="student.online_resume">Online Resume</a>
-      <br />
-      <a :href="student.github_url">Github Profile</a>
-      <br />
-      <img v-bind:src="`${student.photo}`" alt="user photo" />
-    </div>
-    <h1>Student Experiences</h1>
-    <div v-for="experience in student.experiences" v-bind:key="experience.id">
-      <h2>{{ experience.job_title }}, {{ experience.company_name }}</h2>
-      <p>From: {{ experience.start_date }} To: {{ experience.end_date }}</p>
-      <p>{{ experience.details }}</p>
-    </div>
-    <h1>Student Education</h1>
-    <div v-for="education in student.educations" v-bind:key="education.id">
-      <h2>{{ education.start_date }} - {{ education.end_date }}</h2>
-      <h2>{{ education.university_name }}</h2>
-      <h2>{{ education.degree }}</h2>
-      <h3>{{ education.details }}</h3>
-    </div>
-    <h1>Student Skills</h1>
-    <div v-for="skill in student.skills" v-bind:key="skill.id">
-      <p>
-        {{ skill.name }}
-        <button v-on:click="openEditSkill(skill)">Edit</button>
-        <button v-on:click="deleteSkill(skill)">Delete</button>
-      </p>
-      <div v-if="currentSkillEdit == skill.id">
+      <div>
+        <h1>Edit My Data</h1>
+        <h3>{{ student.first_name }} {{ student.last_name }}</h3>
+        <h3>{{ student.email }}</h3>
         <p>
-          Skill name:
-          <input type="text" v-model="skill.name" />
+          Phone number:
+          <input type="text" v-model="student.phone_number" />
         </p>
-        <button v-on:click="updateSkill(skill)">Save Changes</button>
+        <p>
+          Short Bio:
+          <input type="text" v-model="student.short_bio" />
+        </p>
+        <p>
+          LinkedIn Profile:
+          <input type="text" v-model="student.linkedin_url" />
+        </p>
+        <p>
+          Twitter Handle:
+          <input type="text" v-model="student.twitter_handle" />
+        </p>
+        <p>
+          Website URL:
+          <input type="text" v-model="student.website_url" />
+        </p>
+        <p>
+          Online Resume URL:
+          <input type="text" v-model="student.online_resume" />
+        </p>
+        <p>
+          Github Profile:
+          <input type="text" v-model="student.github_url" />
+        </p>
+        <p>
+          Photo URL:
+          <input type="text" v-model="student.photo" />
+        </p>
+        <button v-on:click="updateStudent()">Update Information</button>
       </div>
     </div>
-    <input type="text" v-model="newSkill.name" />
-    <button v-on:click="addSkill()">Add Skill</button>
-    <h1>Student Capstones</h1>
-    <div v-for="capstone in student.capstones" v-bind:key="capstone.id">
-      <h2>{{ capstone.name }}</h2>
-      <img v-bind:src="capstone.screenshot" alt="" />
-      <p>{{ capstone.description }}</p>
-      <p>{{ capstone.url }}</p>
+    <div>
+      <h1>Student Skills</h1>
+      <div v-for="skill in student.skills" v-bind:key="skill.id">
+        <p>
+          {{ skill.name }}
+          <button v-on:click="openEditSkill(skill)">Edit</button>
+          <button v-on:click="deleteSkill(skill)">Delete</button>
+        </p>
+        <div v-if="currentSkillEdit == skill.id">
+          <p>
+            Skill name:
+            <input type="text" v-model="skill.name" />
+          </p>
+          <button v-on:click="updateSkill(skill)">Save Changes</button>
+        </div>
+      </div>
+      <input type="text" v-model="newSkill.name" />
+      <button v-on:click="addSkill()">Add Skill</button>
     </div>
+    <br />
+    <button v-on:click="this.$router.push('/experiences/edit')">Edit Experiences</button>
+    <br />
+    <button v-on:click="this.$router.push('/educations/edit')">Edit Education</button>
+    <br />
+    <button v-on:click="this.$router.push('/capstones/edit')">Edit Capstones</button>
   </div>
 </template>
 
