@@ -62,7 +62,7 @@ export default {
 </script>
 
 <template>
-  <div class="home">
+  <div class="experiences-edit">
     <div>
       <h1>Edit Experience Data</h1>
       <div v-for="experience in student.experiences" v-bind:key="experience.id">
