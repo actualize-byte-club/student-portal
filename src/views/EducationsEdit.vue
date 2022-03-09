@@ -1,4 +1,6 @@
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -71,7 +73,11 @@ export default {
       newEducationParams: {},
     };
   },
-  created: function () {},
+  created: function () {
+    axios.get("/students/1").then((response) => {
+      console.log(response.data);
+    });
+  },
   methods: {
     openEditEducations: function (education) {
       console.log(education.id);
