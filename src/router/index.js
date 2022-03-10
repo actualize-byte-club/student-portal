@@ -7,6 +7,7 @@ import StudentEdit from "../views/StudentEdit.vue";
 import CapstoneEdit from "../views/CapstoneEdit.vue";
 import EducationsEdit from "../views/EducationsEdit.vue";
 import ExperiencesEdit from "../views/ExperiencesEdit.vue";
+import ExperiencesNew from "../views/ExperiencesNew.vue";
 import CapstonesNew from "../views/CapstonesNew.vue";
 import SkillsNew from "../views/SkillsNew.vue";
 import SkillsEdit from "../views/SkillsEdit.vue";
@@ -52,6 +53,11 @@ const routes = [
     path: "/me/experiences/edit",
     name: "experiences-edit",
     component: ExperiencesEdit,
+  },
+  {
+    path: "/experiences/new",
+    name: "experiences-new",
+    component: ExperiencesNew,
   },
   {
     path: "/capstones/new",
