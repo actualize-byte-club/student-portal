@@ -1,29 +1,10 @@
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
-      student: {
-        first_name: "Jane",
-        last_name: "Doe",
-        experiences: [
-          {
-            id: 1,
-            start_date: "Jan 1, 2020",
-            end_date: "Dec 31, 2021",
-            job_title: "Global Director",
-            company_name: "Evil Corp",
-            details: "Trying to take over the world with code.",
-          },
-          {
-            id: 2,
-            start_date: "Jan 1, 2021",
-            end_date: "current",
-            job_title: "Global CEO",
-            company_name: "Evil Corp",
-            details: "Leading the effort to take over the world with code.",
-          },
-        ],
-      },
+      student: {},
       currentExperienceEdit: 0,
       errors: [],
       updateExperienceParams: [],
@@ -31,8 +12,12 @@ export default {
       openAddExperience: false,
     };
   },
-  created: function () {},
-  // Need to add once we have access to backend
+  created: function () {
+    axios.get(`/students/${this.$route.params.id}`).then((response) => {
+      console.log(response.data);
+      this.student = response.data;
+    });
+  },
   methods: {
     openEditExperience: function (experience) {
       console.log(experience.id);
@@ -41,21 +26,25 @@ export default {
     },
     deleteExperience: function (experience) {
       console.log(experience.id);
-      console.log(this.student.experiences);
-      // axios delete request here
+      axios.delete(`/experiences/${experience.id}`).then((response) => {
+        console.log("Deleted", response.data);
+      });
       var index = this.student.experiences.indexOf(experience);
       this.student.experiences.splice(index, 1);
     },
     updateExperience: function (experience) {
       console.log(experience);
       this.currentExperienceEdit = 0;
-      // axios patch/put request here
+      axios.patch(`/experiences/${experience.id}`).then((response) => {
+        console.log("Updated experience", response.data);
+      });
     },
     createExperience: function () {
-      console.log(this.newExperienceParams);
       this.openAddExperience = false;
-      // axios post request here
-      this.student.experiences.push(this.newExperienceParams);
+      axios.post(`/experiences/`, this.newExperienceParams).then((response) => {
+        console.log("Created experience", response.data);
+        this.student.experiences.push(this.newExperienceParams);
+      });
     },
   },
 };
