@@ -44,12 +44,12 @@ const routes = [
     component: CapstoneEdit,
   },
   {
-    path: "/me/educations/edit",
+    path: "/students/:id/educations",
     name: "EducationsEdit",
     component: EducationsEdit,
   },
   {
-    path: "/me/experiences/edit",
+    path: "/students/:id/experiences",
     name: "experiences-edit",
     component: ExperiencesEdit,
   },
