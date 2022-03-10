@@ -10,6 +10,7 @@ import ExperiencesEdit from "../views/ExperiencesEdit.vue";
 import CapstonesNew from "../views/CapstonesNew.vue";
 import SkillsNew from "../views/SkillsNew.vue";
 import SkillsEdit from "../views/SkillsEdit.vue";
+import EducationsNew from "../views/EducationsNew.vue";
 
 const routes = [
   {
@@ -66,6 +67,11 @@ const routes = [
     path: "/me/skills/edit",
     name: "skills-edit",
     component: SkillsEdit,
+  },
+  {
+    path: "/educations/new",
+    name: "educations-new",
+    component: EducationsNew,
   },
 ];
 
