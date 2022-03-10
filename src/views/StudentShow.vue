@@ -107,6 +107,7 @@ export default {
       <p>{{ capstone.description }}</p>
       <p>{{ capstone.url }}</p>
     </div>
+    <router-link to="/me/edit">Edit Profile</router-link>
   </div>
 </template>
 

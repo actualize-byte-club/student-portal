@@ -23,6 +23,7 @@ export default {
 
 <template>
   <div class="educations-new">
+    <router-link to="/me">Back to Profile</router-link>
     <form v-on:submit.prevent="addEducation(newEducationParams)">
       <h2>Add Education</h2>
       <label for="start_date">Start Date:</label>

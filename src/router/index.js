@@ -40,17 +40,17 @@ const routes = [
     component: StudentEdit,
   },
   {
-    path: "/capstone/edit",
+    path: "/me/capstone/edit",
     name: "capstoneedit",
     component: CapstoneEdit,
   },
   {
-    path: "/students/:id/educations",
+    path: "/me/educations/edit",
     name: "EducationsEdit",
     component: EducationsEdit,
   },
   {
-    path: "/students/:id/experiences",
+    path: "/me/experiences/edit",
     name: "experiences-edit",
     component: ExperiencesEdit,
   },

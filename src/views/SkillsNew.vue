@@ -19,6 +19,7 @@ export default {
 <template>
   <div class="skills-new">
     <div>
+      <router-link to="/me">Back to Profile</router-link>
       <h1>Student Skills</h1>
       <p>
         Skill Name:

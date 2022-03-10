@@ -9,7 +9,6 @@ export default {
       errors: [],
       updateExperienceParams: [],
       newExperienceParams: [],
-      openAddExperience: false,
     };
   },
   created: function () {
@@ -39,19 +38,13 @@ export default {
         console.log("Updated experience", response.data);
       });
     },
-    createExperience: function () {
-      this.openAddExperience = false;
-      axios.post(`/experiences/`, this.newExperienceParams).then((response) => {
-        console.log("Created experience", response.data);
-        this.student.experiences.push(this.newExperienceParams);
-      });
-    },
   },
 };
 </script>
 
 <template>
   <div class="experiences-edit">
+    <router-link to="/me/edit">Back to Edit</router-link>
     <div>
       <h1>Edit Experience Data</h1>
       <div v-for="experience in student.experiences" v-bind:key="experience.id">
@@ -85,40 +78,8 @@ export default {
         </div>
       </div>
     </div>
-    <br />
-    <button v-on:click="openAddExperience = true" v-if="!openAddExperience">Add Experience</button>
-    <br />
+    <router-link to="/experiences/new">Add new Experience</router-link>
   </div>
-  <form v-if="openAddExperience" v-on:submit.prevent="createExperience(newExperienceParams)">
-    <h2>Add A New Experience</h2>
-    <label for="start_date">Start Date:</label>
-    <br />
-    <input type="text" id="start_date" name="start_date" v-model="newExperienceParams.start_date" />
-    <br />
-    <label for="end_date">End Date:</label>
-    <br />
-    <input type="text" id="end_date" name="end_date" v-model="newExperienceParams.end_date" />
-    <br />
-    <label for="job_title">Job Title:</label>
-    <br />
-    <input type="text" id="job_title" name="job_title" v-model="newExperienceParams.job_title" />
-    <br />
-    <label for="company_name">Company Name:</label>
-    <br />
-    <input type="text" id="company_name" name="company_name" v-model="newExperienceParams.company_name" />
-    <br />
-    <label for="details">Experience Details:</label>
-    <br />
-    <input type="text" id="details" name="details" v-model="newExperienceParams.details" />
-    <br />
-    <br />
-    <input type="submit" value="Add Experience" />
-  </form>
 </template>
 
-<style>
-img {
-  max-width: 200px;
-  height: auto;
-}
-</style>
+<style></style>

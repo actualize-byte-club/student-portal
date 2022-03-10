@@ -43,6 +43,7 @@ export default {
 
 <template>
   <div class="skills-edit">
+    <router-link to="/me/edit">Back to Edit</router-link>
     <div>
       <h1>Your Skills</h1>
       <div v-for="skill in student.skills" v-bind:key="skill.id">
@@ -60,6 +61,7 @@ export default {
         </div>
       </div>
     </div>
+    <router-link to="/skills/new">Add new Skill</router-link>
   </div>
 </template>
 
