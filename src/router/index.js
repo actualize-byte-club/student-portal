@@ -8,6 +8,8 @@ import CapstoneEdit from "../views/CapstoneEdit.vue";
 import EducationsEdit from "../views/EducationsEdit.vue";
 import ExperiencesEdit from "../views/ExperiencesEdit.vue";
 import CapstonesNew from "../views/CapstonesNew.vue";
+import SkillsNew from "../views/SkillsNew.vue";
+import SkillsEdit from "../views/SkillsEdit.vue";
 
 const routes = [
   {
@@ -26,7 +28,7 @@ const routes = [
     component: Logout,
   },
   {
-    path: "/students/:id",
+    path: "/me",
     name: "studentshow",
     component: StudentShow,
   },
@@ -54,6 +56,16 @@ const routes = [
     path: "/capstones/new",
     name: "capstones-new",
     component: CapstonesNew,
+  },
+  {
+    path: "/skills/new",
+    name: "skills-new",
+    component: SkillsNew,
+  },
+  {
+    path: "/me/skills/edit",
+    name: "skills-edit",
+    component: SkillsEdit,
   },
 ];
 
