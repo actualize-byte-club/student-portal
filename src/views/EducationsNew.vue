@@ -1,4 +1,6 @@
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -9,8 +11,11 @@ export default {
   created: function () {},
   methods: {
     addEducation: function () {
-      console.log(this.newEducationParams);
-      // axios post request here
+      console.log(this.newEducation);
+      axios.post(`/educations/`, this.newEducationsParams).then((response) => {
+        console.log("Created education", response.data);
+        this.student.educations.push(this.newEducationsParams);
+      });
     },
   },
 };
