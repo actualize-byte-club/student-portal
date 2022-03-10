@@ -1,67 +1,21 @@
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
-      student: {
-        first_name: "Jane",
-        last_name: "Doe",
-        email: "jane@gmail.com",
-        phone_number: "312-123-3456",
-        short_bio: "This is a short bio. Everyone knows my name. Fears my name.",
-        linkedin_url: "https://www.linkedin.com/in/jackwhisler/",
-        twitter_handle: "janedoe",
-        website_url: "www.google.com",
-        online_resume: "www.linkedin.com/janedoe",
-        github_url: "www.github.com/janedoe",
-        photo: "https://majornelson.com/wp-content/uploads/sites/7/2021/10/Evil-Genius-2.jpg",
-        experiences: [
-          {
-            id: 1,
-            start_date: "Jan 1, 2020",
-            end_date: "Dec 31, 2021",
-            job_title: "Global Director",
-            company_name: "Evil Corp",
-            details: "Trying to take over the world with code.",
-          },
-          {
-            id: 2,
-            start_date: "Jan 1, 2021",
-            end_date: "current",
-            job_title: "Global CEO",
-            company_name: "Evil Corp",
-            details: "Leading the effort to take over the world with code.",
-          },
-        ],
-        educations: [
-          {
-            start_date: "Sep 1, 1990",
-            end_date: "Jun 1, 1994",
-            degree: "Certificate in Excellence",
-            university_name: "Harvard",
-            details: "If you know, you know.",
-          },
-        ],
-        skills: [
-          { id: 1, name: "rails" },
-          { id: 2, name: "ruby" },
-          { id: 3, name: "project management" },
-        ],
-        capstones: [
-          {
-            name: "World Domination",
-            description: "Solves world hunger, sells for a hefty profit and land rights.",
-            url: "www.worlddomination.org",
-            screenshot:
-              "https://cdn.akamai.steamstatic.com/steam/apps/1128810/ss_53fa01d3fa5de609e9e77254b72e6cf82b51d641.1920x1080.jpg?t=1634868894",
-          },
-        ],
-      },
+      student: {},
       currentStudentEdit: false,
       currentSkillEdit: 0,
       errors: [],
     };
   },
-  created: function () {},
+  created: function () {
+    axios.get(`/students/${this.$route.params.id}`).then((response) => {
+      console.log(response.data);
+      this.student = response.data;
+    });
+  },
   methods: {
     openEditSkill: function (skill) {
       console.log(skill.id);
@@ -70,14 +24,18 @@ export default {
     deleteSkill: function (skill) {
       console.log(skill.id);
       console.log(this.student.skills);
-      // axios delete request here
+      axios.delete(`/skills/${skill.id}`).then((response) => {
+        console.log("Deleted", response.data);
+      });
       var index = this.student.skills.indexOf(skill);
       this.student.skills.splice(index, 1);
     },
     updateSkill: function (skill) {
       console.log(skill);
       this.currentSkillEdit = 0;
-      // axios patch/put request here
+      axios.patch(`/skills/${skill.id}`).then((response) => {
+        console.log("Updated skill", response.data);
+      });
     },
   },
 };
