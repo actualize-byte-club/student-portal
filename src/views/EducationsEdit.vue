@@ -43,6 +43,7 @@ export default {
 
 <template>
   <div class="educations-edit">
+    <router-link to="/me/edit">Back to Edit</router-link>
     <h1>Edit Education</h1>
     <div v-for="education in student.educations" v-bind:key="education.id">
       <div v-if="currentEducationEdit != education.id">
@@ -80,6 +81,7 @@ export default {
         <button v-on:click="updateEducation(education)">Save Changes</button>
       </div>
     </div>
+    <router-link to="/educations/new">Add new Education</router-link>
   </div>
 </template>
 

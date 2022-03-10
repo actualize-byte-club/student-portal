@@ -70,7 +70,6 @@ export default {
       currentCapstoneEdit: 0,
       errors: [],
       capstone: {},
-      newCapstone: {},
     };
   },
   created: function () {},
@@ -91,16 +90,13 @@ export default {
       this.currentCapstoneEdit = 0;
       axios.patch(`/capstones/${capstone.id}`);
     },
-    addCapstone: function () {
-      console.log(this.newCapstone);
-      axios.post(`/capstones`);
-    },
   },
 };
 </script>
 
 <template>
   <div class="capstoneedit">
+    <router-link to="/me/edit">Back to Edit</router-link>
     <h1>Student Capstones Edit</h1>
     <div v-for="capstone in student.capstones" v-bind:key="capstone.id">
       <div>
@@ -133,23 +129,7 @@ export default {
         <button v-on:click="updateCapstone(capstone)">Save Changes</button>
       </div>
     </div>
-    <p>
-      name:
-      <input type="text" v-model="newCapstone.name" />
-    </p>
-    <p>
-      description:
-      <input type="text" v-model="newCapstone.description" />
-    </p>
-    <p>
-      url:
-      <input type="text" v-model="newCapstone.url" />
-    </p>
-    <p>
-      screenshot:
-      <input type="text" v-model="newCapstone.screenshot" />
-    </p>
-    <button v-on:click="addCapstone()">Add Capstone</button>
+    <router-link to="/capstones/new">Add new Capstone</router-link>
   </div>
 </template>
 

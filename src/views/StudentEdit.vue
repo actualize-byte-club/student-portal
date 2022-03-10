@@ -57,6 +57,7 @@ export default {
 <template>
   <div class="studentedit">
     <div>
+      <router-link to="/me">Back to Profile</router-link>
       <div>
         <h1>Edit My Data</h1>
         <h3>{{ student.first_name }} {{ student.last_name }}</h3>
@@ -96,31 +97,14 @@ export default {
         <button v-on:click="updateStudent()">Update Information</button>
       </div>
     </div>
-    <div>
-      <h1>Student Skills</h1>
-      <div v-for="skill in student.skills" v-bind:key="skill.id">
-        <p>
-          {{ skill.name }}
-          <button v-on:click="openEditSkill(skill)">Edit</button>
-          <button v-on:click="deleteSkill(skill)">Delete</button>
-        </p>
-        <div v-if="currentSkillEdit == skill.id">
-          <p>
-            Skill name:
-            <input type="text" v-model="skill.name" />
-          </p>
-          <button v-on:click="updateSkill(skill)">Save Changes</button>
-        </div>
-      </div>
-      <input type="text" v-model="newSkill.name" />
-      <button v-on:click="addSkill()">Add Skill</button>
-    </div>
     <br />
-    <button v-on:click="this.$router.push('/experiences/edit')">Edit Experiences</button>
+    <router-link to="/me/skills/edit">Edit Skills</router-link>
     <br />
-    <button v-on:click="this.$router.push('/educations/edit')">Edit Education</button>
+    <router-link to="/me/educations/edit">Edit Educations</router-link>
     <br />
-    <button v-on:click="this.$router.push('/capstones/edit')">Edit Capstones</button>
+    <router-link to="/me/experiences/edit">Edit Experiences</router-link>
+    <br />
+    <router-link to="/me/capstone/edit">Edit Capstones</router-link>
   </div>
 </template>
 

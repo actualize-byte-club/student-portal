@@ -28,6 +28,7 @@ export default {
 
 <template>
   <div class="capstone-new">
+    <router-link to="/me">Back to Profile</router-link>
     <h1>New Capstone</h1>
     <p>
       name:

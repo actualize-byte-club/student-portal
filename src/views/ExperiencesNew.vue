@@ -21,42 +21,34 @@ export default {
 
 <template>
   <div class="experiences-new">
-    <div>
-      <h1>New Experience</h1>
-    </div>
-    <br />
-    <br />
+    <router-link to="/me">Back to Profile</router-link>
+    <h1>New Experience</h1>
+    <form v-on:submit.prevent="createExperience(newExperienceParams)">
+      <h2>Add A New Experience</h2>
+      <label for="start_date">Start Date:</label>
+      <br />
+      <input type="text" id="start_date" name="start_date" v-model="newExperienceParams.start_date" />
+      <br />
+      <label for="end_date">End Date:</label>
+      <br />
+      <input type="text" id="end_date" name="end_date" v-model="newExperienceParams.end_date" />
+      <br />
+      <label for="job_title">Job Title:</label>
+      <br />
+      <input type="text" id="job_title" name="job_title" v-model="newExperienceParams.job_title" />
+      <br />
+      <label for="company_name">Company Name:</label>
+      <br />
+      <input type="text" id="company_name" name="company_name" v-model="newExperienceParams.company_name" />
+      <br />
+      <label for="details">Experience Details:</label>
+      <br />
+      <input type="text" id="details" name="details" v-model="newExperienceParams.details" />
+      <br />
+      <br />
+      <input type="submit" value="Add Experience" />
+    </form>
   </div>
-  <form v-on:submit.prevent="createExperience(newExperienceParams)">
-    <h2>Add A New Experience</h2>
-    <label for="start_date">Start Date:</label>
-    <br />
-    <input type="text" id="start_date" name="start_date" v-model="newExperienceParams.start_date" />
-    <br />
-    <label for="end_date">End Date:</label>
-    <br />
-    <input type="text" id="end_date" name="end_date" v-model="newExperienceParams.end_date" />
-    <br />
-    <label for="job_title">Job Title:</label>
-    <br />
-    <input type="text" id="job_title" name="job_title" v-model="newExperienceParams.job_title" />
-    <br />
-    <label for="company_name">Company Name:</label>
-    <br />
-    <input type="text" id="company_name" name="company_name" v-model="newExperienceParams.company_name" />
-    <br />
-    <label for="details">Experience Details:</label>
-    <br />
-    <input type="text" id="details" name="details" v-model="newExperienceParams.details" />
-    <br />
-    <br />
-    <input type="submit" value="Add Experience" />
-  </form>
 </template>
 
-<style>
-img {
-  max-width: 200px;
-  height: auto;
-}
-</style>
+<style></style>
