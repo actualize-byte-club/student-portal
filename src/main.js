@@ -3,7 +3,8 @@ import App from "./App.vue";
 import router from "./router";
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "https://secure-plateau-23935.herokuapp.com/" : "/";
+axios.defaults.baseURL =
+  process.env.NODE_ENV === "development" ? "https://byte-club-resume-data-api.herokuapp.com/" : "/";
 
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
