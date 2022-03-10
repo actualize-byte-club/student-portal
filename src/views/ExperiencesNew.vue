@@ -5,24 +5,7 @@ export default {
       student: {
         first_name: "Jane",
         last_name: "Doe",
-        experiences: [
-          {
-            id: 1,
-            start_date: "Jan 1, 2020",
-            end_date: "Dec 31, 2021",
-            job_title: "Global Director",
-            company_name: "Evil Corp",
-            details: "Trying to take over the world with code.",
-          },
-          {
-            id: 2,
-            start_date: "Jan 1, 2021",
-            end_date: "current",
-            job_title: "Global CEO",
-            company_name: "Evil Corp",
-            details: "Leading the effort to take over the world with code.",
-          },
-        ],
+        experiences: [],
       },
       currentExperienceEdit: 0,
       errors: [],
