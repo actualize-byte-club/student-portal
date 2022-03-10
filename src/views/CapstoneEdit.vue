@@ -11,7 +11,12 @@ export default {
       newCapstone: {},
     };
   },
-  created: function () {},
+  created: function () {
+    axios.get(`/students/${this.$route.params.id}`).then((response) => {
+      console.log("student to edit:", response.data);
+      this.student = response.data;
+    });
+  },
   methods: {
     openEditCapstone: function (capstone) {
       console.log(capstone.id);
@@ -21,6 +26,11 @@ export default {
       console.log(capstone.id);
       console.log(this.student.capstones);
       axios.delete(`/capstones/${capstone.id}`);
+      if (confirm("are you sure you want to delete this?")) {
+        axios.delete(`/capstones/${this.capstone.id}`).then((response) => {
+          console.log("success", response.data);
+        });
+      }
       var index = this.student.capstones.indexOf(capstone);
       this.student.capstones.splice(index, 1);
     },
@@ -28,6 +38,15 @@ export default {
       console.log(capstone);
       this.currentCapstoneEdit = 0;
       axios.patch(`/capstones/${capstone.id}`);
+      axios
+        .patch(`/capstone/${this.capstone.id}`, this.capstone)
+        .then((response) => {
+          console.log("Updated Capstone:", response.data);
+          this.$router.push(`/capstones/${this.capstone.id}`);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
     addCapstone: function () {
       console.log(this.newCapstone);
