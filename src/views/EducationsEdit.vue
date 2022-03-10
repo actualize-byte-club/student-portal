@@ -25,18 +25,25 @@ export default {
     deleteEducation: function (education) {
       console.log(education.id);
       console.log(this.student.educations);
-      // axios delete request here
+      axios.delete(`/educations/${education.id}`).then((response) => {
+        console.log("Deleted", response.data);
+      });
       var index = this.student.educations.indexOf(education);
       this.student.educations.splice(index, 1);
     },
     updateEducation: function (education) {
       console.log(education);
       this.currentEducationEdit = 0;
-      // axios patch/put request here
+      axios.patch(`/educations/${education.id}`).then((response) => {
+        console.log("Updated education", response.data);
+      });
     },
     addEducation: function () {
       console.log(this.newEducation);
-      // axios post request here
+      axios.post(`/educations/`, this.newEducationsParams).then((response) => {
+        console.log("Created education", response.data);
+        this.student.educations.push(this.newEducationsParams);
+      });
     },
   },
 };
