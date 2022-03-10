@@ -50,7 +50,14 @@ export default {
     },
     addCapstone: function () {
       console.log(this.newCapstone);
-      axios.post(`/capstones`);
+      axios
+        .post(`/capstones`, this.newRecipeParams)
+        .then((response) => {
+          console.log("New Capstone:", response.data);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };
